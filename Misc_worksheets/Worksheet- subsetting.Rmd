@@ -1,0 +1,138 @@
+---
+title: "Subsetting"
+author: "Abby Lewis"
+date: "2025-06-02"
+output: html_document
+---
+
+## Introduction
+
+This worksheet is designed to help you practice a few different types of subsetting, which is often important when doing data analysis in R. Answers to all questions are at the bottom of the worksheet.
+
+To start: run this chunk to load the data we will be working with
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#Load data
+data <- iris #iris is a dataset of flower measurements that is built into R
+#Isolate one column to work with in the exercises below
+mystery <- iris$Petal.Width
+```
+
+### Vectors
+
+Q1) What is the 97th element in the vector `mystery`, which we created in the setup code above?
+
+```{r}
+#Add your answer here
+```
+
+Q2) Create a new vector `featured_numbers` that contains the 64th, 73rd, and 101st elements of `mystery`
+
+```{r}
+#modify this code:
+featured_numbers <- mystery
+featured_numbers
+```
+
+Q3) What happens if you use TRUE and FALSE to subset a vector? Predict the outcome of the code below before running it
+
+```{r}
+new <- c("Welcome", "to", "SERC")
+new[c(TRUE, FALSE, FALSE)]
+```
+
+Q4) Create a new vector `large` that only contains the elements of `mystery` that are greater than 1.4
+
+```{r}
+#modify this code:
+large <- mystery
+large
+```
+
+Q5) How does your answer above work? Try explaining in words what is happening when you run that code
+
+[answer here]
+
+Q6) What happens if you use negative numbers to subset? Predict the outcome of the code below before running it
+
+```{r}
+new <- c(1, 2, 3)
+new[-1]
+```
+
+Q7) Create a new vector `shortened` that contains all elements of mystery except for the first two. Use the function `length()` to confirm this is two elements shorter.
+
+```{r}
+#modify this code:
+shortened <- mystery
+
+length(mystery)
+length(shortened)
+```
+
+### Data frames
+
+Subsetting dataframes is similar to subsetting vectors, except that they have two dimensions
+
+Q7) Isolate the third column of the iris dataset using its position (i.e., not the column name)
+
+```{r}
+#Answer
+```
+
+Q8) Isolate the fourth row of the third column of the iris dataset. You should get the value 1.5.
+
+```{r}
+#Answer
+```
+
+Q9) Now use the column name to isolate the column "Species" within the iris dataset. What is the 7th element (row) of this column?
+
+```{r}
+iris$Species
+```
+
+Q10) What if you realized that value was actually incorrect? Change this value (Species in the seventh row) to "virginica"
+
+```{r}
+#Your answer here
+
+#Confirm that this worked
+iris$Species[7]
+```
+
+## Nice work!
+
+You made it through the worksheet! If you are interested in learning more about the nitty-gritty rules of subsetting in R, the Advanced R textbook from Hadley Wickham is a great resource
+
+<https://adv-r.hadley.nz/subsetting.html>
+
+# Answers
+
+```{r}
+#Q1
+mystery[97]
+
+#Q2
+featured_numbers <- mystery[c(64, 73, 101)]
+
+#Q4
+large <- mystery[mystery > 1.4]
+
+#Q5
+#mystery > 1.5 produces a "logical vector", that is, a vector containing TRUE and FALSE. This vector is the same length as mystery. When you but this logical vector inside the brackets of mystery[] it tells R whether to keep (TRUE) or discard (FALSE) each element.
+
+#Q7
+iris[3]
+
+#Q8
+iris[4,3]
+
+#Q9 
+iris$Species
+iris$Species[7]
+
+#Q10
+iris$Species[7] <- "virginica"
+```
